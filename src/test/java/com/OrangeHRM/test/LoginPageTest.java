@@ -1,7 +1,9 @@
 package com.OrangeHRM.test;
 
+import com.OrangeHRM.utilities.DataProviders;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.OrangeHRM.base.baseClass;
@@ -9,6 +11,7 @@ import com.OrangeHRM.pages.HomePage;
 import com.OrangeHRM.pages.LoginPage;
 import com.OrangeHRM.utilities.ExtentManager;
 
+@Listeners(com.OrangeHRM.listeners.TestListener.class)
 public class LoginPageTest extends baseClass{
 
 	
@@ -20,27 +23,38 @@ public class LoginPageTest extends baseClass{
 		loginPage = new LoginPage(getDriver());
 		homePage  = new HomePage(getDriver());
 	}
-	
-	@Test
-	public void verifyValidLoginTest() {
+
+	@Test(dataProvider="validLoginData", dataProviderClass = DataProviders.class)
+	public void verifyValidLoginTest(String username, String password) {
 		//ExtentManager.startTest("Valid Login Test");
+
+
 		System.out.println("Running testMethod1 on thread: " + Thread.currentThread().getId());
 		ExtentManager.logStep("Navigating to Login Page entering username and password");
-		loginPage.login("admin","admin123");
+
+		//without using dataProvider
+		//loginPage.login("admin","admin123");
+
+		//with using dataProvider
+		loginPage.login(username, password);
 		ExtentManager.logStep("Verifying Admin tab is visible or not");
 		Assert.assertTrue(homePage.isAdminTabVisible(),"Admin tab should be visible after successfull login ");
 		ExtentManager.logStep("Validation Successful");
 		homePage.logout();
 		ExtentManager.logStep("Logged out Successfully!");
+
+
 		//staticWait(2);
 		//Assert.assertTrue(loginPage.isLoginTextDisplyed(),"This is not login page");
 	}
 	
-	@Test
-	public void inValidLoginTest() {
+	@Test(dataProvider="inValidLoginData", dataProviderClass = DataProviders.class)
+	public void inValidLoginTest(String username, String password) {
 		//ExtentManager.startTest("In-valid Login Test!");
 		ExtentManager.logStep("Navigating to Login Page entering username and password");
-		loginPage.login("admin","admin");
+		//loginPage.login("admin","admin");
+		//with using dataProvider
+		loginPage.login(username, password);
 		String expectedErrorMessage = "Invalid credentials";
 		Assert.assertTrue(loginPage.verifyErrorMessage(expectedErrorMessage),"Test Failed: Invalid error message");
 		ExtentManager.logStep("Validation Successful");

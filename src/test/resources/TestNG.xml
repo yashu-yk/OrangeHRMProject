@@ -1,9 +1,9 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <suite name="OrangeHrMSuite" parallel="classes" thread-count="8">
-	<test name="OrangeHRMTest">
 	<listeners>
 	<listener class-name="com.OrangeHRM.listeners.TestListener"></listener>
 	</listeners>
+	<test name="OrangeHRMTest">
 		<classes>
 		<class name="com.OrangeHRM.test.dummyClass"></class>
 		<class name="com.OrangeHRM.test.dummyClass2"></class> 

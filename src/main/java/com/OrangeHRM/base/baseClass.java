@@ -10,6 +10,7 @@ import java.util.concurrent.locks.LockSupport;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -60,7 +61,16 @@ public class baseClass {
 
 		String browser = prop.getProperty("browser");
 		if(browser.equalsIgnoreCase("chrome")) {
-			driver.set(new ChromeDriver());
+			// Create ChromeOptions
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--headless=new"); // Run Chrome in headless mode
+			options.addArguments("--disable-gpu"); // Disable GPU for headless mode
+			options.addArguments("--window-size=1920,1080"); // Set window size
+			options.addArguments("--disable-notifications"); // Disable browser notifications
+			options.addArguments("--no-sandbox"); // Required for some CI environments like Jenkins
+			options.addArguments("--disable-dev-shm-usage"); // Resolve issues in resource-limited environments
+
+			driver.set(new ChromeDriver(options));
 			ExtentManager.registerDriver(getDriver());
 			logger.info("ChromeDriver Instance is created.");
 		}
@@ -83,7 +93,7 @@ public class baseClass {
 				getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
 
 				// maximize the browser
-				getDriver().manage().window().maximize();
+				//getDriver().manage().window().maximize();
 
 				//navigate to url
 				try {

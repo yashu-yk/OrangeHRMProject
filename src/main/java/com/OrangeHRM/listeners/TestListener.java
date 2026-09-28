@@ -2,6 +2,7 @@ package com.OrangeHRM.listeners;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
+import com.OrangeHRM.utilities.RetryAnalyzer;
 import org.testng.IAnnotationTransformer;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -10,13 +11,13 @@ import org.testng.annotations.ITestAnnotation;
 
 import com.OrangeHRM.base.baseClass;
 import com.OrangeHRM.utilities.ExtentManager;
-//import com.OrangeHRM.utilities.RetryAnalyzer;
 
 public class TestListener implements ITestListener, IAnnotationTransformer {
 
+	// Triggered when a test fails
 	@Override
 	public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
-		//annotation.setRetryAnalyzer(RetryAnalyzer.class);
+		annotation.setRetryAnalyzer(RetryAnalyzer.class);
 	}
 
 	// Triggered when a test starts
