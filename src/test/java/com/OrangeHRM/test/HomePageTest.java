@@ -10,7 +10,7 @@ import com.OrangeHRM.pages.HomePage;
 import com.OrangeHRM.pages.LoginPage;
 import com.OrangeHRM.utilities.ExtentManager;
 
-@Listeners(com.OrangeHRM.listeners.TestListener.class)
+
 public class HomePageTest extends baseClass {
 
 	

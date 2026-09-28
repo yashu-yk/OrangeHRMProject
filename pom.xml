@@ -3,7 +3,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.orangeHRM</groupId>
+  <groupId>com.OrangeHRM</groupId>
   <artifactId>OrangeHRMProject</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
@@ -16,30 +16,7 @@
     <maven.compiler.release>17</maven.compiler.release>
   </properties>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.junit</groupId>
-        <artifactId>junit-bom</artifactId>
-        <version>5.11.0</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <!-- Optionally: parameterized tests support -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-params</artifactId>
-      <scope>test</scope>
-    </dependency>
     
     <!-- Source: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 <dependency>
@@ -108,6 +85,18 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>5.4.0</version>
 		</dependency>
+      <dependency>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+          <version>7.12.0</version>
+          <scope>compile</scope>
+      </dependency>
+      <!--      <dependency>-->
+<!--          <groupId>org.testng</groupId>-->
+<!--          <artifactId>testng</artifactId>-->
+<!--          <version>7.12.0</version>-->
+<!--          <scope>compile</scope>-->
+<!--      </dependency>-->
 
   </dependencies>
 
@@ -128,10 +117,10 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.13.0</version>
         </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.3.0</version>
-        </plugin>
+<!--        <plugin>-->
+<!--          <artifactId>maven-surefire-plugin</artifactId>-->
+<!--          <version>3.3.0</version>-->
+<!--        </plugin>-->
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.4.2</version>
@@ -155,5 +144,22 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
+      <plugins>
+
+          <!-- This activates Surefire -->
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>3.3.0</version>
+
+              <configuration>
+                  <suiteXmlFiles>
+                      <suiteXmlFile>src/test/resources/TestNG.xml</suiteXmlFile>
+                  </suiteXmlFiles>
+              </configuration>
+          </plugin>
+
+      </plugins>
   </build>
 </project>
