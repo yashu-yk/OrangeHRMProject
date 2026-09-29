@@ -1,34 +1,52 @@
-# Maven
-target/
+# Ignore build and dependency files
+/target/
+*.class
+*.jar
+*.war
+*.ear
 
-# Eclipse
-.classpath
-.project
-.settings/
-
-# IntelliJ IDEA
+# Ignore IDE-specific files
 .idea/
 *.iml
-
-# VS Code
 .vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# Java
-*.class
+# Ignore Maven-specific files
+.mvn/
+mvnw
+mvnw.cmd
 
-# Logs
+# Ignore log and output files
 *.log
+/logs/
+*.out
+*.err
 
-# Test reports
-test-output/
-surefire-reports/
+# Ignore test reports and screenshots
+/test-output/
+screenshots/
+allure-results/
+reports/
+ExtentReport/
+*.html
 
-# Extent Reports
-ExtentReports/
+# Ignore generated Selenium WebDriver files
+chromedriver.log
+geckodriver.log
+selenium-server.log
 
-# OS files
-.DS_Store
+# Ignore compiled and temporary files
+/bin/
+*.swp
+*.DS_Store
 Thumbs.db
 
-# Environment / secrets
-.env
+# Ignore Node modules (if using any JS tools)
+node_modules/
+
+# Ignore dependency caching
+/.m2/
