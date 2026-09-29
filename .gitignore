@@ -1,0 +1,34 @@
+# Maven
+target/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Java
+*.class
+
+# Logs
+*.log
+
+# Test reports
+test-output/
+surefire-reports/
+
+# Extent Reports
+ExtentReports/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment / secrets
+.env
